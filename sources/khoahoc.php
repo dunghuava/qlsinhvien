@@ -20,7 +20,7 @@
                     <th></th>
                     <td class="02">
                         <button style="width:49%" class="btn btn-danger">Reset</button>
-                        <button style="width:49%" class="btn btn-primary">Thêm</button>
+                        <button id="ed" style="width:49%" class="btn btn-primary">Thêm</button>
                     </td>
                 </tr>
             </tr>
@@ -33,10 +33,11 @@
     <table class="data-table" border>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Mã khóa học</th>
                 <th>Tên khóa học</th>
                 <th>Ngày tạo</th>
-                <th style="width:16%">Todo</th>
+                <th style="width:10%">Todo</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@
                 foreach ($data as $item){
             ?>
                 <tr>
+                    <td><?=$item['id']?></td>
                     <td><?=$item['ma_khoahoc']?></td>
                     <td><?=$item['ten_khoahoc']?></td>
                     <td><?=$item['ngay_tao']?></td>
@@ -68,7 +70,6 @@
             'ten_khoahoc':$('#ten_khoahoc').val(),
         };
         if (id>0){
-            payload['where']={'id':payload.id};
             postData('update','db_khoahoc',payload,true);
         }else{
             postData('add','db_khoahoc',payload,true);
@@ -83,6 +84,7 @@
         }
     }
     function onUpdate(json){
+        $('#ed').html('Cập nhật');
         $('#id').val(json.id);
         $('#ma_khoahoc').val(json.ma_khoahoc);
         $('#ten_khoahoc').val(json.ten_khoahoc);

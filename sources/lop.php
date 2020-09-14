@@ -17,7 +17,7 @@
                     <select name="" id="ma_khoahoc" class="form-control">
                         <option value="0">Chọn niên khóa</option>
                         <?php foreach ($khoahoc as $item){ ?>
-                            <option value="<?=$item['ma_khoahoc']?>"><?=$item['ten_khoahoc']?></option>
+                            <option value="<?=$item['id']?>"><?=$item['ten_khoahoc']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -36,7 +36,7 @@
                     <select name="" id="ma_nganh" class="form-control">
                         <option value="0">Chọn ngành</option>
                         <?php foreach ($nganh as $item){ ?>
-                            <option value="<?=$item['ma_nganh']?>"><?=$item['ten_nganh']?></option>
+                            <option value="<?=$item['id']?>"><?=$item['ten_nganh']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -50,7 +50,7 @@
                     <select name="" id="ma_khoa" class="form-control">
                         <option value="0">Chọn khoa</option>
                         <?php foreach ($khoa as $item){ ?>
-                            <option value="<?=$item['ma_khoa']?>"><?=$item['ten_khoa']?></option>
+                            <option value="<?=$item['id']?>"><?=$item['ten_khoa']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -73,7 +73,7 @@
                     <th></th>
                     <td class="02">
                         <button style="width:49%" class="btn btn-danger">Reset</button>
-                        <button style="width:49%" class="btn btn-primary">Thêm</button>
+                        <button id="ed" style="width:49%" class="btn btn-primary">Thêm</button>
                     </td>
                 </tr>
             </tr>
@@ -81,18 +81,19 @@
     </form>
     <br>
     <?php 
-        $data = $d->o_fet("select a.*,b.ten_khoahoc,c.ten_khoa from #_lop a left join #_khoahoc b on a.ma_khoahoc=b.ma_khoahoc left join #_khoa c on a.ma_khoa=c.ma_khoa order by ten_lop asc ")
+        $data = $d->o_fet("select a.*,b.ten_khoahoc,c.ten_khoa from #_lop a left join #_khoahoc b on a.ma_khoahoc=b.id left join #_khoa c on a.ma_khoa=c.id order by ten_lop asc ")
     ?>
     <div class="table-overflow">
     <table class="data-table" border>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Mã lớp</th>
                 <th>Tên lớp</th>
                 <th>Tên khoa</th>
                 <th>Tên khóa</th>
                 <th>Ngày tạo</th>
-                <th>Todo</th>
+                <th style="width:10%">Todo</th>
             </tr>
         </thead>
         <tbody>
@@ -100,6 +101,7 @@
                 foreach ($data as $item){
             ?>
                 <tr>
+                    <td><?=$item['id']?></td>
                     <td><?=$item['ma_lop']?></td>
                     <td><?=$item['ten_lop']?></td>
                     <td><?=$item['ten_khoa']?></td>
@@ -132,7 +134,6 @@
             'ma_he':$('#ma_he').val(),
         };
         if (id>0){
-            payload['where']={'id':payload.id};
             postData('update','db_lop',payload,true);
         }else{
             postData('add','db_lop',payload,true);
@@ -147,6 +148,7 @@
         }
     }
     function onUpdate(json){
+        $('#ed').html('Cập nhật');
         $('#id').val(json.id);
         $('#ma_lop').val(json.ma_lop);
         $('#ten_lop').val(json.ten_lop);

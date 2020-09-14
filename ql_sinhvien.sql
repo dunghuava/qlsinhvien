@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2020 at 11:17 AM
+-- Generation Time: Sep 14, 2020 at 05:19 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -40,9 +40,10 @@ CREATE TABLE `db_hedaotao` (
 --
 
 INSERT INTO `db_hedaotao` (`id`, `ma_he`, `ten_he`, `ngay_tao`) VALUES
-(1, 'H1414', 'Đại Học', '28-08-2020 09:57'),
-(3, 'H7971', 'Chính Quy Cao Cấp', '28-08-2020 09:57'),
-(5, 'H85&&', 'Cao Đẳng Công Thương HCM', '28-08-2020 10:31');
+(1, 'H6492', 'Trung Cấp', '13-09-2020 21:44'),
+(2, 'H1312', 'Cao Đẳng', '13-09-2020 21:45'),
+(3, 'H7686', 'Đại Học', '13-09-2020 21:45'),
+(4, 'H2304', 'Sau Đại Học', '13-09-2020 21:45');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,10 @@ CREATE TABLE `db_khoa` (
 --
 
 INSERT INTO `db_khoa` (`id`, `ma_khoa`, `ten_khoa`, `ngay_tao`) VALUES
-(2, 'KHTN & CN', 'Khoa Học Tự Nhiên & Công Nghệ', '28-08-2020 10:40');
+(2, 'KHTN & CN', 'Khoa Học Tự Nhiên & CN', '13-09-2020 22:04'),
+(5, 'KNL', 'Khoa Nông Lâm', '13-09-2020 22:04'),
+(6, 'KSP', 'Khoa Sư Phạm', '13-09-2020 22:05'),
+(7, 'KYD', 'Khoa Y Dược', '13-09-2020 22:05');
 
 -- --------------------------------------------------------
 
@@ -82,7 +86,11 @@ CREATE TABLE `db_khoahoc` (
 --
 
 INSERT INTO `db_khoahoc` (`id`, `ma_khoahoc`, `ten_khoahoc`, `ngay_tao`) VALUES
-(1, 'KH203600', '2009-2013', '28-08-2020 10:38');
+(1, 'KH3578', 'Khóa 2014-2018', '13-09-2020 21:48'),
+(2, 'KH9093', 'Khóa 2015-2019', '13-09-2020 21:48'),
+(3, 'KH4029', 'Khóa 2016-2020', '13-09-2020 21:48'),
+(4, 'KH4822', 'Khóa 2017-2021', '13-09-2020 21:49'),
+(5, 'KH8454', 'Khóa 2018-2022', '13-09-2020 21:49');
 
 -- --------------------------------------------------------
 
@@ -106,7 +114,8 @@ CREATE TABLE `db_lop` (
 --
 
 INSERT INTO `db_lop` (`id`, `ma_lop`, `ten_lop`, `ma_khoa`, `ma_khoahoc`, `ma_nganh`, `ma_he`, `ngay_tao`) VALUES
-(1, 'K1414', 'Công Nghệ Thông Tin K14', 'KHTN & CN', 'KH203600', 'D1413', 'H1414', '28-08-2020 10:54');
+(1, 'CNTTK15', 'Công Nghệ Thông Tin K15', '2', '1', '1', 'H7686', '13-09-2020 22:08'),
+(2, 'YDK15', 'Y Đa Khoa K15', '7', '2', '3', 'H7686', '13-09-2020 22:10');
 
 -- --------------------------------------------------------
 
@@ -127,8 +136,90 @@ CREATE TABLE `db_nganh` (
 --
 
 INSERT INTO `db_nganh` (`id`, `ma_nganh`, `ten_nganh`, `ma_khoa`, `ngay_tao`) VALUES
-(2, 'D1413', 'Công Nghệ Thông Tin', 'KHTN & CN', '28-08-2020 10:51'),
-(3, 'D3868', 'Công Nghệ Thông Tin K15', 'KHTN & CN', '28-08-2020 10:51');
+(1, 'D2316', 'Công Nghệ Thông Tin', '2', '13-09-2020 22:05'),
+(2, 'D1931', 'Sư Phạm Vật Lý', '6', '13-09-2020 22:07'),
+(3, 'D1222', 'Thú Y', '7', '13-09-2020 22:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_province`
+--
+
+CREATE TABLE `db_province` (
+  `province_id` int(10) UNSIGNED NOT NULL,
+  `province_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `province_code` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `db_province`
+--
+
+INSERT INTO `db_province` (`province_id`, `province_name`, `province_code`) VALUES
+(1, 'Hồ Chí Minh', 'SG'),
+(2, 'Hà Nội', 'HN'),
+(3, 'Đà Nẵng', 'DDN'),
+(4, 'Bình Dương', 'BD'),
+(5, 'Đồng Nai', 'DNA'),
+(6, 'Khánh Hòa', 'KH'),
+(7, 'Hải Phòng', 'HP'),
+(8, 'Long An', 'LA'),
+(9, 'Quảng Nam', 'QNA'),
+(10, 'Bà Rịa Vũng Tàu', 'VT'),
+(11, 'Đắk Lắk', 'DDL'),
+(12, 'Cần Thơ', 'CT'),
+(13, 'Bình Thuận  ', 'BTH'),
+(14, 'Lâm Đồng', 'LDD'),
+(15, 'Thừa Thiên Huế', 'TTH'),
+(16, 'Kiên Giang', 'KG'),
+(17, 'Bắc Ninh', 'BN'),
+(18, 'Quảng Ninh', 'QNI'),
+(19, 'Thanh Hóa', 'TH'),
+(20, 'Nghệ An', 'NA'),
+(21, 'Hải Dương', 'HD'),
+(22, 'Gia Lai', 'GL'),
+(23, 'Bình Phước', 'BP'),
+(24, 'Hưng Yên', 'HY'),
+(25, 'Bình Định', 'BDD'),
+(26, 'Tiền Giang', 'TG'),
+(27, 'Thái Bình', 'TB'),
+(28, 'Bắc Giang', 'BG'),
+(29, 'Hòa Bình', 'HB'),
+(30, 'An Giang', 'AG'),
+(31, 'Vĩnh Phúc', 'VP'),
+(32, 'Tây Ninh', 'TNI'),
+(33, 'Thái Nguyên', 'TN'),
+(34, 'Lào Cai', 'LCA'),
+(35, 'Nam Định', 'NDD'),
+(36, 'Quảng Ngãi', 'QNG'),
+(37, 'Bến Tre', 'BTR'),
+(38, 'Đắk Nông', 'DNO'),
+(39, 'Cà Mau', 'CM'),
+(40, 'Vĩnh Long', 'VL'),
+(41, 'Ninh Bình', 'NB'),
+(42, 'Phú Thọ', 'PT'),
+(43, 'Ninh Thuận', 'NT'),
+(44, 'Phú Yên', 'PY'),
+(45, 'Hà Nam', 'HNA'),
+(46, 'Hà Tĩnh', 'HT'),
+(47, 'Đồng Tháp', 'DDT'),
+(48, 'Sóc Trăng', 'ST'),
+(49, 'Kon Tum', 'KT'),
+(50, 'Quảng Bình', 'QB'),
+(51, 'Quảng Trị', 'QT'),
+(52, 'Trà Vinh', 'TV'),
+(53, 'Hậu Giang', 'HGI'),
+(54, 'Sơn La', 'SL'),
+(55, 'Bạc Liêu', 'BL'),
+(56, 'Yên Bái', 'YB'),
+(57, 'Tuyên Quang', 'TQ'),
+(58, 'Điện Biên', 'DDB'),
+(59, 'Lai Châu', 'LCH'),
+(60, 'Lạng Sơn', 'LS'),
+(61, 'Hà Giang', 'HG'),
+(62, 'Bắc Kạn', 'BK'),
+(63, 'Cao Bằng', 'CB');
 
 -- --------------------------------------------------------
 
@@ -160,7 +251,33 @@ CREATE TABLE `db_sinhvien` (
 --
 
 INSERT INTO `db_sinhvien` (`id`, `ma_sv`, `ma_lop`, `ma_khoahoc`, `ho_ten`, `ngay_sinh`, `dien_thoai`, `gioi_tinh`, `dia_chi`, `noi_sinh`, `hoten_cha`, `hoten_me`, `que_quan`, `dan_toc`, `ton_giao`, `ngay_tao`) VALUES
-(9, '14104012', 'K1414', 'KH203600', 'Nguyễn Hùng Dũng', '2020-08-05', '0383868205', 0, '12-Trần Não-Bình An-Q2-HCM', 'Cư jut - Daklak ', 'Hứa Văn Tâm', 'Vi Thị Trái', 'Chi Lăng-Lạng Sơn', 'Nùng', 'Không', '28-08-2020 13:45');
+(3, '14103012', '1', '2', 'Dũng', '2020-09-23', '0383868204', 0, 'Nhà Bè, Ho Chi Minh City, Vietnam', 'Nghệ An', 'Cha', 'Me', 'Cần Thơ', 'Nung', 'Khong', '14-09-2020 22:09'),
+(4, '15103012', '1', '3', 'Minh Đính', '2020-09-30', '049499494', 0, 'Buon Ma Thuot, Đắk Lắk Province, Vietnam', 'Kiên Giang', 'NULL', '', 'Bà Rịa Vũng Tàu', 'K', 'NULL', '14-09-2020 22:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_sinhvien_vitri`
+--
+
+CREATE TABLE `db_sinhvien_vitri` (
+  `id` int(11) NOT NULL,
+  `sinhvien_id` int(11) NOT NULL,
+  `ma_sv` int(10) DEFAULT NULL,
+  `ma_lop` int(10) DEFAULT NULL,
+  `trang_thai` int(11) NOT NULL DEFAULT 0 COMMENT '0=chưa duyệt/1=đã duyệt',
+  `_lat` varchar(100) DEFAULT NULL COMMENT 'kinh độ',
+  `_lng` varchar(100) DEFAULT NULL COMMENT 'vĩ độ',
+  `ngay_tao` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_sinhvien_vitri`
+--
+
+INSERT INTO `db_sinhvien_vitri` (`id`, `sinhvien_id`, `ma_sv`, `ma_lop`, `trang_thai`, `_lat`, `_lng`, `ngay_tao`) VALUES
+(2, 3, 14103012, 1, 1, '10.6952642', '106.704874', '14-09-2020 22:08'),
+(3, 4, 15103012, 1, 1, '12.6661944', '108.0382475', '14-09-2020 22:09');
 
 --
 -- Indexes for dumped tables
@@ -207,6 +324,12 @@ ALTER TABLE `db_nganh`
   ADD KEY `ma_nganh` (`ma_nganh`);
 
 --
+-- Indexes for table `db_province`
+--
+ALTER TABLE `db_province`
+  ADD PRIMARY KEY (`province_id`);
+
+--
 -- Indexes for table `db_sinhvien`
 --
 ALTER TABLE `db_sinhvien`
@@ -216,6 +339,12 @@ ALTER TABLE `db_sinhvien`
   ADD KEY `ma_khoahoc` (`ma_khoahoc`);
 
 --
+-- Indexes for table `db_sinhvien_vitri`
+--
+ALTER TABLE `db_sinhvien_vitri`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -223,25 +352,25 @@ ALTER TABLE `db_sinhvien`
 -- AUTO_INCREMENT for table `db_hedaotao`
 --
 ALTER TABLE `db_hedaotao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `db_khoa`
 --
 ALTER TABLE `db_khoa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `db_khoahoc`
 --
 ALTER TABLE `db_khoahoc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `db_lop`
 --
 ALTER TABLE `db_lop`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `db_nganh`
@@ -250,35 +379,22 @@ ALTER TABLE `db_nganh`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `db_province`
+--
+ALTER TABLE `db_province`
+  MODIFY `province_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
 -- AUTO_INCREMENT for table `db_sinhvien`
 --
 ALTER TABLE `db_sinhvien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `db_sinhvien_vitri`
 --
-
---
--- Constraints for table `db_lop`
---
-ALTER TABLE `db_lop`
-  ADD CONSTRAINT `db_lop_ibfk_1` FOREIGN KEY (`ma_he`) REFERENCES `db_hedaotao` (`ma_he`),
-  ADD CONSTRAINT `db_lop_ibfk_2` FOREIGN KEY (`ma_nganh`) REFERENCES `db_nganh` (`ma_nganh`),
-  ADD CONSTRAINT `db_lop_ibfk_3` FOREIGN KEY (`ma_khoahoc`) REFERENCES `db_khoahoc` (`ma_khoahoc`);
-
---
--- Constraints for table `db_nganh`
---
-ALTER TABLE `db_nganh`
-  ADD CONSTRAINT `db_nganh_ibfk_1` FOREIGN KEY (`ma_khoa`) REFERENCES `db_khoa` (`ma_khoa`);
-
---
--- Constraints for table `db_sinhvien`
---
-ALTER TABLE `db_sinhvien`
-  ADD CONSTRAINT `db_sinhvien_ibfk_1` FOREIGN KEY (`ma_lop`) REFERENCES `db_lop` (`ma_lop`),
-  ADD CONSTRAINT `db_sinhvien_ibfk_2` FOREIGN KEY (`ma_khoahoc`) REFERENCES `db_khoahoc` (`ma_khoahoc`);
+ALTER TABLE `db_sinhvien_vitri`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

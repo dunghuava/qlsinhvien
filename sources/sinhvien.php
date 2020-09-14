@@ -1,4 +1,9 @@
 <br>
+<style>
+    form table{
+        width:100%;
+    }
+</style>
 <section class="form">
     <form action="" method="post">
         <table class="">
@@ -6,12 +11,22 @@
                 <th>Mã sinh viên</th>
                 <td>
                     <input type="hidden" id="id">
+                    <input type="hidden" id="_lat">
+                    <input type="hidden" id="_lng">
                     <input id="ma_sv" type="text" class="form-control">
                 </td>
                 <td>&nbsp;&nbsp;</td>
                 <th>Quê quán</th>
                 <td>
-                    <input id="que_quan" type="text" class="form-control">
+                    <?php 
+                        $province = $d->o_fet("select * from #_province")
+                    ?>
+                    <select name="" id="que_quan" class="form-control">
+                        <option value="0">Quê quán</option>
+                        <?php foreach ($province as $item){ ?>
+                            <option value="<?=$item['province_name']?>"><?=$item['province_name']?></option>
+                        <?php } ?>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -64,7 +79,7 @@
             <tr>
                 <th>Địa chỉ</th>
                 <td>
-                    <input id="dia_chi" type="text" class="form-control">
+                    <input onFocus="geolocate()" id="dia_chi" type="text" class="form-control">
                 </td>
                 <td>&nbsp;&nbsp;</td>
                 <th>Chọn khoa</th>
@@ -75,7 +90,7 @@
                     <select name="" id="ma_khoahoc" class="form-control">
                         <option value="0">Chọn khóa</option>
                         <?php foreach ($khoa_hoc as $item){ ?>
-                            <option value="<?=$item['ma_khoahoc']?>"><?=$item['ten_khoahoc']?></option>
+                            <option value="<?=$item['id']?>"><?=$item['ten_khoahoc']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -83,7 +98,12 @@
             <tr>
                 <th>Nơi sinh</th>
                 <td>
-                    <input id="noi_sinh" type="text" class="form-control">
+                    <select name="" id="noi_sinh" class="form-control">
+                        <option value="0">Nơi sinh</option>
+                        <?php foreach ($province as $item){ ?>
+                            <option value="<?=$item['province_name']?>"><?=$item['province_name']?></option>
+                        <?php } ?>
+                    </select>
                 </td>
                 <td>&nbsp;&nbsp;</td>
                 <th>Chọn lớp</th>
@@ -94,7 +114,7 @@
                     <select name="" id="ma_lop" class="form-control">
                         <option value="0">Chọn lớp</option>
                         <?php foreach ($lop as $item){ ?>
-                            <option value="<?=$item['ma_lop']?>"><?=$item['ten_lop']?></option>
+                            <option value="<?=$item['id']?>"><?=$item['ten_lop']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -104,7 +124,7 @@
                     <th></th>
                     <td class="02">
                         <button style="width:49%" class="btn btn-danger">Reset</button>
-                        <button style="width:49%" class="btn btn-primary">Thêm</button>
+                        <button id="ed" style="width:49%" class="btn btn-primary">Thêm</button>
                     </td>
                 </tr>
             </tr>
@@ -112,16 +132,18 @@
     </form>
     <br>
     <?php 
-        $data = $d->o_fet("select * from #_sinhvien order by ho_ten asc");
+        $data = $d->o_fet("select a.*,b.trang_thai,b._lat,b._lng,b.id as svid from #_sinhvien a inner join #_sinhvien_vitri b on a.id=b.sinhvien_id order by ho_ten asc");
     ?>
     <table class="data-table" border>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Mã SV</th>
                 <th>Họ tên</th>
                 <th>Ngày sinh</th>
+                <th style="width:15%">Tình trạng</th>
                 <th>Ngày tạo</th>
-                <th>Todo</th>
+                <th style="width:10%">Todo</th>
             </tr>
         </thead>
         <tbody>
@@ -129,9 +151,16 @@
                 foreach ($data as $item){
             ?>
                 <tr>
+                    <td><?=$item['id']?></td>
                     <td><?=$item['ma_sv']?></td>
                     <td><?=$item['ho_ten']?></td>
                     <td><?=$item['ngay_sinh']?></td>
+                    <td class="text-center">
+                       <select onchange="onChange(<?=$item['svid']?>,this)" class="form-control">
+                            <option <?=$item['trang_thai']==1 ? 'selected':''?> value="1">✔ Đã duyệt</option>
+                            <option <?=$item['trang_thai']==0 ? 'selected':''?> value="0">✖ Chưa duyệt</option>
+                       </select>
+                    </td>
                     <td><?=$item['ngay_tao']?></td>
                     <td>
                         <button onclick="onUpdate(<?=tojson($item)?>)"  class="btn btn-primary"><span class="pointer fa fa-edit"></span></button>
@@ -145,7 +174,16 @@
     </table>
 </section>
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjwJQRCuf970OLe6UuBiMvg_DyYW2PL6Y&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 <script>
+    function onChange(id,me){
+        var payload ={
+            'id'        :id,
+            'trang_thai':me.value
+        };
+        postData('update','db_sinhvien_vitri',payload,false);
+    }
     $('form').submit(function (e) { 
         e.preventDefault();
         var id = $('#id').val();
@@ -165,12 +203,13 @@
             'hoten_me'   :$('#hoten_me').val(),
             'ma_khoahoc' :$('#ma_khoahoc').val(),
             'ma_lop'     :$('#ma_lop').val(),
+            '_lat'       :$('#_lat').val(),
+            '_lng'       :$('#_lng').val(),
         };
         if (id>0){
-            payload['where'] = {'id':payload.id};
-            postData('update','db_sinhvien',payload,true);
+            postData('update','db_sinhvien',payload,false);
         }else{
-            postData('add','db_sinhvien',payload,true);
+            postData('add','db_sinhvien',payload,false);
         }
     });
     function onDelete(id){
@@ -182,6 +221,7 @@
         }
     }
     function onUpdate(json){
+        $('#ed').html('Cập nhật');
         $('#id').val(json.id);
         $('#ma_sv').val(json.ma_sv);
         $('#ho_ten').val(json.ho_ten);
@@ -197,5 +237,42 @@
         $('#hoten_me').val(json.hoten_me);
         $('#ma_khoahoc').val(json.ma_khoahoc);
         $('#ma_lop').val(json.ma_lop);
+        $('#_lat').val(json._lat);
+        $('#_lng').val(json._lng);
     }
 </script>
+<script>
+      "use strict";
+      let placeSearch;
+      let qgis_address;
+      function initAutocomplete() {
+          qgis_address = new google.maps.places.Autocomplete(
+          document.getElementById("dia_chi"),
+          {
+            types: ["geocode"]
+          }
+        ); 
+        qgis_address.setFields(["address_component","geometry"]);
+        qgis_address.addListener("place_changed", fillInAddress);
+      }
+      function fillInAddress() {
+        const place = qgis_address.getPlace();
+        document.getElementById('_lat').value=place.geometry.location.lat();
+        document.getElementById('_lng').value=place.geometry.location.lng();
+      }
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            const circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            qgis_address.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>

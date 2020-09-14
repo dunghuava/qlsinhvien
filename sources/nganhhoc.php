@@ -24,7 +24,7 @@
                     <select name="" id="ma_khoa" class="form-control">
                         <option value="0">Chọn khoa</option>
                         <?php foreach ($khoa as $item){ ?>
-                            <option value="<?=$item['ma_khoa']?>"><?=$item['ten_khoa']?></option>
+                            <option value="<?=$item['id']?>"><?=$item['ten_khoa']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -34,7 +34,7 @@
                     <th></th>
                     <td class="02">
                         <button style="width:49%" class="btn btn-danger">Reset</button>
-                        <button style="width:49%" class="btn btn-primary">Thêm</button>
+                        <button id="ed" style="width:49%" class="btn btn-primary">Thêm</button>
                     </td>
                 </tr>
             </tr>
@@ -42,11 +42,12 @@
     </form>
     <br>
     <?php 
-        $data = $d->o_fet("select a.*,b.ten_khoa from #_nganh a inner join #_khoa b on a.ma_khoa=b.ma_khoa order by ten_nganh asc");
+        $data = $d->o_fet("select a.*,b.ten_khoa from #_nganh a inner join #_khoa b on a.ma_khoa=b.id order by ten_nganh asc");
     ?>
     <table class="data-table" border>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Mã ngành</th>
                 <th>Tên ngành</th>
                 <th>Khoa</th>
@@ -59,6 +60,7 @@
                 foreach ($data as $item){
             ?>
                 <tr>
+                    <td><?=$item['id']?></td>
                     <td><?=$item['ma_nganh']?></td>
                     <td><?=$item['ten_nganh']?></td>
                     <td><?=$item['ten_khoa']?></td>
@@ -86,7 +88,6 @@
             'ma_khoa'  :$('#ma_khoa').val(),
         };
         if (id>0){
-            payload['where'] = {'id':payload.id};
             postData('update','db_nganh',payload,true);
         }else{
             postData('add','db_nganh',payload,true);
@@ -102,6 +103,7 @@
         }
     }
     function onUpdate(json){
+        $('#ed').html('Cập nhật');
         $('#id').val(json.id);
         $('#ma_nganh').val(json.ma_nganh);
         $('#ten_nganh').val(json.ten_nganh);

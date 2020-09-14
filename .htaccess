@@ -5,3 +5,4 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
  
 RewriteRule ^(.*)$ index.php?page=$1 [NC]
+RewriteRule (#1/12/107)$ index.php?page=qgismap[L]

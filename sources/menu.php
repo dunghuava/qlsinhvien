@@ -1,24 +1,60 @@
 <?php 
-    $page = 'ql-sinhvien';
+    $page = 'sinhvien';
     if (isset($_GET['page'])){
         $page = $_GET['page'];
     }
 ?>
+<style>
+    .parent-menu_s p{
+        margin:4px 0px;
+    }
+</style>
 <section class="menu-area">
-    <h3 class="title-area"><span class="fa fa-bars"></span>&nbsp;Danh mục</h3>
+    <h3 class="title-area"><span class="fa fa-bars"></span>&nbsp;Quản lý</h3>
     <ul class="parent-menu">
-        <li <?=$page=='ql-hedaotao' ? 'class="active"':''?>><a href="<?=base_url('ql-hedaotao')?>">Hệ đào tạo</a></li>
-        <li <?=$page=='ql-khoahoc' ? 'class="active"':''?>><a href="<?=base_url('ql-khoahoc')?>">Khóa học</a></li>
-        <li <?=$page=='ql-khoa' ? 'class="active"':''?>><a href="<?=base_url('ql-khoa')?>">Khoa</a></li>
-        <li <?=$page=='ql-nganhhoc' ? 'class="active"':''?>><a href="<?=base_url('ql-nganhhoc')?>">Ngành học</a></li>
-        <li <?=$page=='ql-lop' ? 'class="active"':''?>><a href="<?=base_url('ql-lop')?>">Lớp học</a></li>
-        <li <?=$page=='ql-sinhvien' ? 'class="active"':''?>><a href="<?=base_url('ql-sinhvien')?>">Sinh viên</a></li>
+        <li <?=$page=='hedaotao' ? 'class="active"':''?>><a href="<?=base_url('hedaotao')?>">Hệ đào tạo</a></li>
+        <li <?=$page=='khoahoc' ? 'class="active"':''?>><a href="<?=base_url('khoahoc')?>">Khóa học</a></li>
+        <li <?=$page=='khoa' ? 'class="active"':''?>><a href="<?=base_url('khoa')?>">Khoa</a></li>
+        <li <?=$page=='nganhhoc' ? 'class="active"':''?>><a href="<?=base_url('nganhhoc')?>">Ngành học</a></li>
+        <li <?=$page=='lop' ? 'class="active"':''?>><a href="<?=base_url('lop')?>">Lớp học</a></li>
+        <li <?=$page=='sinhvien' ? 'class="active"':''?>><a href="<?=base_url('sinhvien')?>">Sinh viên</a></li>
     </ul>
 </section>
 <section class="menu-area">
-    <h3 class="title-area"><span class="fa fa-cog"></span>&nbsp;Hệ thống</h3>
-    <ul class="parent-menu">
-        <li><a href="">Menu</a></li>
-        <li><a href="">Menu</a></li>
+    <h3 class="title-area"><span class="fa fa-cog"></span>&nbsp;
+        <a style="color:white" class="no-link" href="<?=base_url('map')?>">Bản đồ sinh viên</a>
+    </h3>
+    <ul class="parent-menu_s">
+        <p>
+            <input id="masv_s" type="text" class="form-control" placeholder="Nhập vào MSSV">
+        </p>
+        <p>
+        <?php 
+            $nganh = $d->o_fet("select * from #_nganh")
+        ?>
+        <select name="" id="ma_nganh_s" class="form-control">
+            <option value="0">Chọn ngành</option>
+            <?php foreach ($nganh as $item){ ?>
+                <option value="<?=$item['ma_nganh']?>"><?=$item['ten_nganh']?></option>
+            <?php } ?>
+        </select>
+        </p>
+        <p>
+            <?php 
+                $khoa = $d->o_fet("select * from #_khoa")
+            ?>
+            <select name="" id="ma_khoa_s" class="form-control">
+                <option value="0">Chọn khoa</option>
+                <?php foreach ($khoa as $item){ ?>
+                    <option value="<?=$item['ma_khoa']?>"><?=$item['ten_khoa']?></option>
+                <?php } ?>
+            </select>
+        </p>
+        <p>
+          <button onclick="onSearch()" class="btn btn-danger btn-block text-left">
+            <span class="fa fa-search"></span>&nbsp;
+            Tìm kiếm
+          </button>
+        </p>
     </ul>
 </section>

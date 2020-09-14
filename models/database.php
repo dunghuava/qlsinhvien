@@ -57,7 +57,11 @@
          $stmt->execute();
          return $this->db->lastInsertId();
      }
-
+     function reset(){
+        $this->sql='';
+        $this->table='';
+        $this->where='';
+     }
      function update($data = array())
      {
          $values = "";

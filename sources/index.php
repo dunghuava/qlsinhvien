@@ -1,1 +1,1 @@
-<?php include ('ql-sinhvien.php') ?>
+<?php include ('sinhvien.php') ?>

@@ -2,6 +2,7 @@ $(document).ready(function () {
     setTimeout(() => {
         $('#spinner').fadeOut();
     }, 1000);
+    $('input').attr('autocomplete','off');
 });
 var uri = $('#uri').attr('href');
 function postData(type,table,payload,reload){

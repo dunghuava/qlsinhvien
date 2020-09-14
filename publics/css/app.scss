@@ -9,7 +9,7 @@ html{
     background: #D1E1EB;
 }
 body.container{
-    width: 1000px;
+    width: 1200px;
     margin: auto;
     padding:0px;
 }
@@ -27,6 +27,9 @@ form{
             }
         }
     }
+}
+.no-link{
+    text-decoration: none !important;
 }
 .table-overflow{
     overflow-x: scroll;
@@ -218,10 +221,14 @@ select.form-control{
                 font-family: 'FontAwesome';
             }
             &:hover{
-                padding-left:10px;
+                a{
+                    color: orangered;
+                } 
             }
             &.active{
-                padding-left:10px;
+               a{
+                   color: orangered;
+               }
             }
         }
     }

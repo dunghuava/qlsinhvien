@@ -8,7 +8,7 @@ html {
 }
 
 body.container {
-  width: 1000px;
+  width: 1200px;
   margin: auto;
   padding: 0px;
 }
@@ -30,6 +30,10 @@ form table tr th {
 
 form table tr td {
   padding: 2px 0px;
+}
+
+.no-link {
+  text-decoration: none !important;
 }
 
 .table-overflow {
@@ -258,12 +262,12 @@ select.form-control {
   font-family: 'FontAwesome';
 }
 
-.menu-area ul.parent-menu li:hover {
-  padding-left: 10px;
+.menu-area ul.parent-menu li:hover a {
+  color: orangered;
 }
 
-.menu-area ul.parent-menu li.active {
-  padding-left: 10px;
+.menu-area ul.parent-menu li.active a {
+  color: orangered;
 }
 
 .pointer {
