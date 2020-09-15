@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2020 at 05:19 PM
+-- Generation Time: Sep 15, 2020 at 05:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -41,9 +41,10 @@ CREATE TABLE `db_hedaotao` (
 
 INSERT INTO `db_hedaotao` (`id`, `ma_he`, `ten_he`, `ngay_tao`) VALUES
 (1, 'H6492', 'Trung Cấp', '13-09-2020 21:44'),
-(2, 'H1312', 'Cao Đẳng', '13-09-2020 21:45'),
+(2, 'H1312', 'Cao Đẳng', '15-09-2020 21:48'),
 (3, 'H7686', 'Đại Học', '13-09-2020 21:45'),
-(4, 'H2304', 'Sau Đại Học', '13-09-2020 21:45');
+(4, 'H2304', 'Sau Đại Học', '13-09-2020 21:45'),
+(5, 'H44269d9d', 'Cao Cấp', '15-09-2020 21:44');
 
 -- --------------------------------------------------------
 
@@ -236,7 +237,6 @@ CREATE TABLE `db_sinhvien` (
   `ngay_sinh` varchar(255) DEFAULT NULL,
   `dien_thoai` varchar(255) DEFAULT NULL,
   `gioi_tinh` int(1) DEFAULT 0 COMMENT '0=nam / 1=nu',
-  `dia_chi` varchar(255) DEFAULT NULL,
   `noi_sinh` varchar(255) DEFAULT NULL,
   `hoten_cha` varchar(255) DEFAULT NULL,
   `hoten_me` varchar(255) DEFAULT NULL,
@@ -250,9 +250,10 @@ CREATE TABLE `db_sinhvien` (
 -- Dumping data for table `db_sinhvien`
 --
 
-INSERT INTO `db_sinhvien` (`id`, `ma_sv`, `ma_lop`, `ma_khoahoc`, `ho_ten`, `ngay_sinh`, `dien_thoai`, `gioi_tinh`, `dia_chi`, `noi_sinh`, `hoten_cha`, `hoten_me`, `que_quan`, `dan_toc`, `ton_giao`, `ngay_tao`) VALUES
-(3, '14103012', '1', '2', 'Dũng', '2020-09-23', '0383868204', 0, 'Nhà Bè, Ho Chi Minh City, Vietnam', 'Nghệ An', 'Cha', 'Me', 'Cần Thơ', 'Nung', 'Khong', '14-09-2020 22:09'),
-(4, '15103012', '1', '3', 'Minh Đính', '2020-09-30', '049499494', 0, 'Buon Ma Thuot, Đắk Lắk Province, Vietnam', 'Kiên Giang', 'NULL', '', 'Bà Rịa Vũng Tàu', 'K', 'NULL', '14-09-2020 22:09');
+INSERT INTO `db_sinhvien` (`id`, `ma_sv`, `ma_lop`, `ma_khoahoc`, `ho_ten`, `ngay_sinh`, `dien_thoai`, `gioi_tinh`, `noi_sinh`, `hoten_cha`, `hoten_me`, `que_quan`, `dan_toc`, `ton_giao`, `ngay_tao`) VALUES
+(3, '14103012', '1', '2', 'Dũng', '2020-09-23', '0383868204', 0, 'Nghệ An', 'Cha', 'Me', 'Cần Thơ', 'Nung', 'Khong', '14-09-2020 22:09'),
+(4, '15103012', '1', '3', 'Minh Đính', '2020-09-30', '049499494', 0, 'Kiên Giang', 'NULL', '', 'Bà Rịa Vũng Tàu', 'K', 'NULL', '14-09-2020 22:09'),
+(5, '14103011', '2', '2', 'Dũng Văn Hứa', '2020-09-23', '92929292', 0, 'Thừa Thiên Huế', '', '', 'Hải Phòng', '', '', '15-09-2020 21:52');
 
 -- --------------------------------------------------------
 
@@ -262,9 +263,10 @@ INSERT INTO `db_sinhvien` (`id`, `ma_sv`, `ma_lop`, `ma_khoahoc`, `ho_ten`, `nga
 
 CREATE TABLE `db_sinhvien_vitri` (
   `id` int(11) NOT NULL,
-  `sinhvien_id` int(11) NOT NULL,
+  `sinhvien_id` int(11) NOT NULL COMMENT 'liên kết với id trong bảng db_sinhvien',
   `ma_sv` int(10) DEFAULT NULL,
   `ma_lop` int(10) DEFAULT NULL,
+  `dia_chi` varchar(500) DEFAULT NULL,
   `trang_thai` int(11) NOT NULL DEFAULT 0 COMMENT '0=chưa duyệt/1=đã duyệt',
   `_lat` varchar(100) DEFAULT NULL COMMENT 'kinh độ',
   `_lng` varchar(100) DEFAULT NULL COMMENT 'vĩ độ',
@@ -275,9 +277,10 @@ CREATE TABLE `db_sinhvien_vitri` (
 -- Dumping data for table `db_sinhvien_vitri`
 --
 
-INSERT INTO `db_sinhvien_vitri` (`id`, `sinhvien_id`, `ma_sv`, `ma_lop`, `trang_thai`, `_lat`, `_lng`, `ngay_tao`) VALUES
-(2, 3, 14103012, 1, 1, '10.6952642', '106.704874', '14-09-2020 22:08'),
-(3, 4, 15103012, 1, 1, '12.6661944', '108.0382475', '14-09-2020 22:09');
+INSERT INTO `db_sinhvien_vitri` (`id`, `sinhvien_id`, `ma_sv`, `ma_lop`, `dia_chi`, `trang_thai`, `_lat`, `_lng`, `ngay_tao`) VALUES
+(2, 3, 14103012, 1, NULL, 1, '10.6952642', '106.704874', '15-09-2020 20:21'),
+(3, 4, 15103012, 1, NULL, 1, '12.6661944', '108.0382475', '14-09-2020 22:09'),
+(4, 5, 14103011, 2, '12/7 Đường Trần Não, An Phu, District 2, Ho Chi Minh City, Vietnam', 1, '10.7986848', '106.7329098', '15-09-2020 21:57');
 
 --
 -- Indexes for dumped tables
@@ -352,7 +355,7 @@ ALTER TABLE `db_sinhvien_vitri`
 -- AUTO_INCREMENT for table `db_hedaotao`
 --
 ALTER TABLE `db_hedaotao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `db_khoa`
@@ -388,13 +391,13 @@ ALTER TABLE `db_province`
 -- AUTO_INCREMENT for table `db_sinhvien`
 --
 ALTER TABLE `db_sinhvien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `db_sinhvien_vitri`
 --
 ALTER TABLE `db_sinhvien_vitri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
