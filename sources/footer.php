@@ -1,4 +1,5 @@
 <script src="<?=base_url.'/publics/js/app.js?v='.time()?>"></script>
+<!-- load file javascrip về để chạy -->
 <footer>
     <div class="footer">
         <div class="text-center">

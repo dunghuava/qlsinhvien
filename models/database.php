@@ -1,4 +1,5 @@
 <?php 
+ // những cái này là file database thôi, ko có gì để xem cả 
  class database{
 
      protected $db = ''; 

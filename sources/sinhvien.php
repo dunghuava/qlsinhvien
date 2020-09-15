@@ -132,7 +132,7 @@
     </form>
     <br>
     <?php 
-        $data = $d->o_fet("select a.*,b.trang_thai,b._lat,b._lng,b.id as svid from #_sinhvien a inner join #_sinhvien_vitri b on a.id=b.sinhvien_id order by ho_ten asc");
+        $data = $d->o_fet("select a.*,b.dia_chi,b.trang_thai,b._lat,b._lng,b.id as svid from #_sinhvien a inner join #_sinhvien_vitri b on a.id=b.sinhvien_id order by ho_ten asc");
     ?>
     <table class="data-table" border>
         <thead>
@@ -177,12 +177,16 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjwJQRCuf970OLe6UuBiMvg_DyYW2PL6Y&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 <script>
-    function onChange(id,me){
+
+    // những hàm này dùng chung cho nhiều trang, đa số các trang đều có cấu trúc như vậy
+    // xem chi tiết ở trong file hedaotao.php 
+    // riêng file sinh viên này thì hơi khác một xíu
+    function onChange(id,me){ // hàm này để thay đổi trạng thái đã duyệt / chưa duyệt của sinh viên
         var payload ={
             'id'        :id,
             'trang_thai':me.value
         };
-        postData('update','db_sinhvien_vitri',payload,false);
+        postData('update','db_sinhvien_vitri',payload,false); // gọi qua model/ajax.php
     }
     $('form').submit(function (e) { 
         e.preventDefault();
@@ -207,9 +211,9 @@
             '_lng'       :$('#_lng').val(),
         };
         if (id>0){
-            postData('update','db_sinhvien',payload,false);
+            postData('update','db_sinhvien',payload,true); // lại vào file ajax tiếp
         }else{
-            postData('add','db_sinhvien',payload,false);
+            postData('add','db_sinhvien',payload,true); // luôn luôn chạy vào file ajax.php
         }
     });
     function onDelete(id){
@@ -220,6 +224,7 @@
             postData('delete','db_sinhvien',payload,true);
         }
     }
+    // lấy thông tin ra để hiển thị ok
     function onUpdate(json){
         $('#ed').html('Cập nhật');
         $('#id').val(json.id);
@@ -242,6 +247,7 @@
     }
 </script>
 <script>
+      // hàm này là để khi m gõ địa chỉ nó sẽ hiện ra danh sách địa chỉ bao gồm tên đường, số nhà, quận, huyện, ko cần hiểu vì đây là của google
       "use strict";
       let placeSearch;
       let qgis_address;

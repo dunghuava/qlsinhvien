@@ -3,6 +3,7 @@
     if (isset($_GET['page'])){
         $page = $_GET['page'];
     }
+    // TRANG DANH SÁCH MENU
 ?>
 <style>
     .parent-menu_s p{

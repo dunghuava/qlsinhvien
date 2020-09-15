@@ -62,6 +62,9 @@
 </section>
 
 <script>
+
+    // những hàm này dùng chung cho nhiều trang, đa số các trang đều có cấu trúc như vậy
+    // xem chi tiết ở trong file hedaotao.php 
     $('form').submit(function (e) { 
         e.preventDefault();
         var id = $('#id').val();
@@ -71,9 +74,9 @@
             'ten_khoa':$('#ten_khoa').val(),
         };
         if (id>0){
-            postData('update','db_khoa',payload,true);
+            postData('update','db_khoa',payload,true); // gọi hàm sửa
         }else{
-            postData('add','db_khoa',payload,true);
+            postData('add','db_khoa',payload,true); // gọi hàm xóa
         }
     });
     function onDelete(id){

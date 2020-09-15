@@ -61,6 +61,10 @@
     </table>
 </section>
 <script>
+
+    // những hàm này dùng chung cho nhiều trang, đa số các trang đều có cấu trúc như vậy
+    // xem chi tiết ở trong file hedaotao.php 
+    
     $('form').submit(function (e) { 
         e.preventDefault();
         var id = $('#id').val();

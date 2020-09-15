@@ -1,4 +1,5 @@
 <?php
+    // đây là file index thôi k có gì xem
     include ('config.php');
     include ('models/database.php');
     $d = new database($config);

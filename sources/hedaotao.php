@@ -62,31 +62,39 @@
 </section>
 
 <script>
-    $('form').submit(function (e) { 
+    // những hàm này dùng chung cho nhiều trang, đa số các trang đều có cấu trúc như vậy
+    // khi bấm thêm thì chạy vào hàm này
+    $('form').submit(function (e) {  // hàm số 1
         e.preventDefault();
-        var id = $('#id').val();
+        var id = $('#id').val(); // lấy id ra 
         var payload = {
             'id'    :id,
             'ma_he' :$('#ma_he').val(),
             'ten_he':$('#ten_he').val(),
         };
+        // nếu id >0 tức là sửa 1 cái có sẵn
         if (id>0){
-            postData('update','db_hedaotao',payload,true);
+            // chạy vào hàm sửa = (update) cập nhật (sửa)
+            postData('update','db_hedaotao',payload,true); // hàm này gọi tới file ajax.php ở trong thư mục model
+            //==> muốn xem kĩ hơn thì vào publics/js/app.js để xem code, cũng k có gì hay ho :))
         }else{
-            postData('add','db_hedaotao',payload,true);
+            // nếu id ko có thì tức là thêm tạo mới == add (thêm)
+            postData('add','db_hedaotao',payload,true); // hàm này gọi tới file ajax.php ở trong thư mục model
         }
     });
-    function onDelete(id){
+    function onDelete(id){ // khi bấm nút xóa
+        // xóa danh sách theo ID
         var payload ={
             'id':id
         };
         if (confirm('Xóa khỏi danh sách ?')){
-            postData('delete','db_hedaotao',payload,true);
+            // gọi hàm xóa = delete
+            postData('delete','db_hedaotao',payload,true); // hàm này gọi tới file ajax.php ở trong thư mục model
         }
     }
-    function onUpdate(json){
+    function onUpdate(json){ // khi bấm nút chỉnh sửa thì load lại dữ liệu lên ô nhập input để nhìn chõ rõ con mắt
         $('#ed').html('Cập nhật');
-        $('#id').val(json.id);
+        $('#id').val(json.id); // sửa thei id này này
         $('#ma_he').val(json.ma_he);
         $('#ten_he').val(json.ten_he);
     }

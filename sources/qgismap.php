@@ -18,18 +18,18 @@
 <div id="map" style="width:100%;height:500px"></div>
 <script>
   var locations   = <?=!empty($json) ? json_encode($json):'[{"_lat":"0","_lng":"0"}]'?>;
-  var map = null;
+  var qgismap = null;
   var marker = null;
   var infowindow = null;
   var cr_content=0;
   function initMap(){
-      map = new google.maps.Map(document.getElementById('map'), {
+    qgismap = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
         center: new google.maps.LatLng(locations[0]._lat, locations[0]._lng),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
       setTimeout(() => {
-        map.setZoom(10);  
+        qgismap.setZoom(10);  
       }, 2000);
       infowindow = new google.maps.InfoWindow();
       var i;
@@ -37,7 +37,7 @@
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i]._lat, locations[i]._lng),
           icon:'<?=base_url('publics/marker.png')?>',
-          map: map
+          map: qgismap
         });
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
           return function() {
@@ -50,7 +50,7 @@
                 content+='<p><span>Địa Chỉ</span>:&nbsp;'+locations[i].dia_chi+'</p>';
                 content+='</div>';
                 infowindow.setContent(content);
-                infowindow.open(map, marker);
+                infowindow.open(qgismap, marker);
           }
         })(marker, i));
         google.maps.event.addListener(marker, 'mouseout', function() {
