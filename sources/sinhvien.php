@@ -82,15 +82,15 @@
                     <input onFocus="geolocate()" id="dia_chi" type="text" class="form-control">
                 </td>
                 <td>&nbsp;&nbsp;</td>
-                <th>Chọn khoa</th>
+                <th>Chọn lớp</th>
                 <td>
                     <?php 
-                        $khoa_hoc = $d->o_fet("select * from #_khoahoc")
+                        $lop = $d->o_fet("select * from #_lop")
                     ?>
-                    <select name="" id="ma_khoahoc" class="form-control">
-                        <option value="0">Chọn khóa</option>
-                        <?php foreach ($khoa_hoc as $item){ ?>
-                            <option value="<?=$item['id']?>"><?=$item['ten_khoahoc']?></option>
+                    <select name="" id="ma_lop" class="form-control">
+                        <option value="0">Chọn lớp</option>
+                        <?php foreach ($lop as $item){ ?>
+                            <option value="<?=$item['id']?>"><?=$item['ten_lop']?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -106,16 +106,11 @@
                     </select>
                 </td>
                 <td>&nbsp;&nbsp;</td>
-                <th>Chọn lớp</th>
+                <th>Phân quyền</th>
                 <td>
-                    <?php 
-                        $lop = $d->o_fet("select * from #_lop")
-                    ?>
-                    <select name="" id="ma_lop" class="form-control">
-                        <option value="0">Chọn lớp</option>
-                        <?php foreach ($lop as $item){ ?>
-                            <option value="<?=$item['id']?>"><?=$item['ten_lop']?></option>
-                        <?php } ?>
+                    <select name="quyen" id="quyen" class="form-control">
+                        <option value="0">Sinh viên</option>
+                        <option value="1">Quản trị viên</option>
                     </select>
                 </td>
             </tr>
@@ -205,7 +200,7 @@
             'ton_giao'   :$('#ton_giao').val(),
             'hoten_cha'  :$('#hoten_cha').val(),
             'hoten_me'   :$('#hoten_me').val(),
-            'ma_khoahoc' :$('#ma_khoahoc').val(),
+            'quyen'      :$('#quyen').val(),
             'ma_lop'     :$('#ma_lop').val(),
             '_lat'       :$('#_lat').val(),
             '_lng'       :$('#_lng').val(),
@@ -240,7 +235,7 @@
         $('#ton_giao').val(json.ton_giao);
         $('#hoten_cha').val(json.hoten_cha);
         $('#hoten_me').val(json.hoten_me);
-        $('#ma_khoahoc').val(json.ma_khoahoc);
+        $('#quyen').val(json.quyen);
         $('#ma_lop').val(json.ma_lop);
         $('#_lat').val(json._lat);
         $('#_lng').val(json._lng);

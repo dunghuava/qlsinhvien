@@ -11,7 +11,13 @@
     <script src="<?=base_url('publics/js/jquery.js')?>"></script>
     <script src="<?=base_url('publics/bootstrap/js/bootstrap.js')?>"></script>
     <link rel="stylesheet" href="<?=base_url('publics/css/app.css?v='.time())?>">
-    
+    <?php if (isset($muser['quyen']) && $muser['quyen']==0){ ?>
+        <style>
+            .user-pms{
+                display:none;
+            }
+        </style>
+    <?php } ?>
 </head>
 <body class="container app">
     <header>
@@ -34,7 +40,7 @@
                 <li><a href=""><span class="fa fa-home"></span>&nbsp;Trang chủ</a></li>
                 <li><a href="<?=base_url('map')?>"><span class="fa fa-users"></span>&nbsp;Bản đồ sinh viên</a></li>
                 <li><a href=""><span class="fa fa-info"></span>&nbsp;Giới thiệu</a></li>
-                <li style="float:right;border-right:0px;"><a href="<?=base_url()?>">&nbsp;...</a></li>
+                <li style="float:right;border-right:0px;"><a href="<?=base_url('logout')?>"><span class="fa fa-sign-out"></span>&nbsp;Đăng xuất</a></li>
             </ul>
         </nav>
     </header>

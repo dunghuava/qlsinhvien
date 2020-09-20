@@ -189,10 +189,10 @@ select.form-control {
 }
 
 #form-login {
-  width: 300px;
+  width: 400px;
   margin: 10px auto;
   padding: 25px;
-  border-radius: 10px;
+  border-radius: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -264,10 +264,12 @@ select.form-control {
 
 .menu-area ul.parent-menu li:hover a {
   color: orangered;
+  font-weight: bold;
 }
 
 .menu-area ul.parent-menu li.active a {
   color: orangered;
+  font-weight: bold;
 }
 
 .pointer {

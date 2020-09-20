@@ -5,12 +5,11 @@
         $pass = $_POST['pass'];
         $pass=md5($pass);
         $idata = $d->o_fet("SELECT * FROM db_sinhvien WHERE ma_sv = '$masv' AND mat_khau='$pass' LIMIT 1");
-
-        if (isset($data[0]['ma_sv'])){
-            print_r($idata[0]);
+        if (!empty($idata)){
             $_SESSION['muser']=$idata[0];
+            echo "<script>location.href='sinhvien'</script>";
         }else{
-            $text='Sai mã sinh viên / mật khẩu';
+            $text='Sai mã sinh viên hoặc mật khẩu';
         }
     }
 ?>

@@ -5,6 +5,10 @@
     include ('models/database.php');
     $d = new database($config);
     $page = 'index';
+    $muser=NULL;
+    if (isset($_SESSION['muser'])){
+        $muser=$_SESSION['muser'];
+    }
     if (isset($_GET['page'])){
         $page = $_GET['page'];
     }

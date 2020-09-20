@@ -53,7 +53,6 @@
         </p>
         <p>
           <button onclick="onSearch()" class="btn btn-danger btn-block text-left">
-            <span class="fa fa-search"></span>&nbsp;
             Tìm kiếm
           </button>
         </p>

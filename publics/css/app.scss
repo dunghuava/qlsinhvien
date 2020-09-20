@@ -160,10 +160,10 @@ select.form-control{
     cursor: pointer;
 }
 #form-login{
-    width: 300px;
+    width: 400px;
     margin:10px auto;
     padding:25px;
-    border-radius: 10px;
+    border-radius: 2px;
     display: flex;
     border:1px solid #dcdcdc;
     table{
@@ -223,11 +223,13 @@ select.form-control{
             &:hover{
                 a{
                     color: orangered;
+                    font-weight: bold;
                 } 
             }
             &.active{
                a{
                    color: orangered;
+                   font-weight: bold;
                }
             }
         }
