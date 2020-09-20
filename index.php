@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // đây là file index thôi k có gì xem
     include ('config.php');
     include ('models/database.php');
@@ -15,7 +16,11 @@
             echo('</div>');
             echo('<div class="col-md-10 md9">');
             if (file_exists('sources/'.$page.'.php')){
-                include ('sources/'.$page.'.php');
+                if (!isset($_SESSION['muser'])){
+                    include ('sources/login.php');
+                }else{
+                    include ('sources/'.$page.'.php');
+                }
             }else{
                 include ('sources/404.php');
             }
