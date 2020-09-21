@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2020 at 05:08 PM
+-- Generation Time: Sep 21, 2020 at 05:25 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -225,6 +225,26 @@ INSERT INTO `db_province` (`province_id`, `province_name`, `province_code`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `db_quanly`
+--
+
+CREATE TABLE `db_quanly` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `ngay_tao` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_quanly`
+--
+
+INSERT INTO `db_quanly` (`id`, `username`, `password`, `ngay_tao`) VALUES
+(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', '2020-09-21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `db_sinhvien`
 --
 
@@ -278,7 +298,7 @@ CREATE TABLE `db_sinhvien_vitri` (
 --
 
 INSERT INTO `db_sinhvien_vitri` (`id`, `sinhvien_id`, `ma_sv`, `ma_lop`, `dia_chi`, `trang_thai`, `_lat`, `_lng`, `ngay_tao`) VALUES
-(2, 3, 14103012, 1, NULL, 1, '10.6952642', '106.704874', '15-09-2020 20:21'),
+(2, 3, 14103012, 1, '', 0, '10.6952642', '106.704874', '20-09-2020 16:21'),
 (3, 4, 15103012, 1, NULL, 1, '12.6661944', '108.0382475', '14-09-2020 22:09'),
 (4, 5, 14103011, 2, '12/7 Đường Trần Não, An Phu, District 2, Ho Chi Minh City, Vietnam', 1, '10.7986848', '106.7329098', '15-09-2020 21:57');
 
@@ -331,6 +351,12 @@ ALTER TABLE `db_nganh`
 --
 ALTER TABLE `db_province`
   ADD PRIMARY KEY (`province_id`);
+
+--
+-- Indexes for table `db_quanly`
+--
+ALTER TABLE `db_quanly`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `db_sinhvien`
@@ -386,6 +412,12 @@ ALTER TABLE `db_nganh`
 --
 ALTER TABLE `db_province`
   MODIFY `province_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
+-- AUTO_INCREMENT for table `db_quanly`
+--
+ALTER TABLE `db_quanly`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `db_sinhvien`

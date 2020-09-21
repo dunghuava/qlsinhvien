@@ -105,23 +105,12 @@
                         <?php } ?>
                     </select>
                 </td>
-                <td>&nbsp;&nbsp;</td>
-                <th>Phân quyền</th>
-                <td>
-                    <select name="quyen" id="quyen" class="form-control">
-                        <option value="0">Sinh viên</option>
-                        <option value="1">Quản trị viên</option>
-                    </select>
+                <th></th>
+                <td></td>
+                <td class="02">
+                    <button style="width:49%" class="btn btn-danger">Reset</button>
+                    <button id="ed" style="width:49%" class="btn btn-primary">Thêm</button>
                 </td>
-            </tr>
-            <tr>
-                <tr>
-                    <th></th>
-                    <td class="02">
-                        <button style="width:49%" class="btn btn-danger">Reset</button>
-                        <button id="ed" style="width:49%" class="btn btn-primary">Thêm</button>
-                    </td>
-                </tr>
             </tr>
         </table>
     </form>
@@ -129,7 +118,7 @@
     <?php 
         $data = $d->o_fet("select a.*,b.dia_chi,b.trang_thai,b._lat,b._lng,b.id as svid from #_sinhvien a inner join #_sinhvien_vitri b on a.id=b.sinhvien_id order by ho_ten asc");
     ?>
-    <table class="data-table" border>
+    <table class="data-table" border <?=$lasinhvien ? 'hidden':''?>>
         <thead>
             <tr>
                 <th>ID</th>

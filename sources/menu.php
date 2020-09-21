@@ -13,11 +13,11 @@
 <section class="menu-area">
     <h3 class="title-area"><span class="fa fa-bars"></span>&nbsp;Quản lý</h3>
     <ul class="parent-menu">
-        <li <?=$page=='hedaotao' ? 'class="active"':''?>><a href="<?=base_url('hedaotao')?>">Hệ đào tạo</a></li>
-        <li <?=$page=='khoahoc' ? 'class="active"':''?>><a href="<?=base_url('khoahoc')?>">Khóa học</a></li>
-        <li <?=$page=='khoa' ? 'class="active"':''?>><a href="<?=base_url('khoa')?>">Khoa</a></li>
-        <li <?=$page=='nganhhoc' ? 'class="active"':''?>><a href="<?=base_url('nganhhoc')?>">Ngành học</a></li>
-        <li <?=$page=='lop' ? 'class="active"':''?>><a href="<?=base_url('lop')?>">Lớp học</a></li>
+        <li <?=$lasinhvien ? 'hidden':''?> <?=$page=='hedaotao' ? 'class="active"':''?>><a href="<?=base_url('hedaotao')?>">Hệ đào tạo</a></li>
+        <li <?=$lasinhvien ? 'hidden':''?> <?=$page=='khoahoc' ? 'class="active"':''?>><a href="<?=base_url('khoahoc')?>">Khóa học</a></li>
+        <li <?=$lasinhvien ? 'hidden':''?> <?=$page=='khoa' ? 'class="active"':''?>><a href="<?=base_url('khoa')?>">Khoa</a></li>
+        <li <?=$lasinhvien ? 'hidden':''?> <?=$page=='nganhhoc' ? 'class="active"':''?>><a href="<?=base_url('nganhhoc')?>">Ngành học</a></li>
+        <li <?=$lasinhvien ? 'hidden':''?> <?=$page=='lop' ? 'class="active"':''?>><a href="<?=base_url('lop')?>">Lớp học</a></li>
         <li <?=$page=='sinhvien' ? 'class="active"':''?>><a href="<?=base_url('sinhvien')?>">Sinh viên</a></li>
     </ul>
 </section>

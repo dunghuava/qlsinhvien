@@ -1,6 +1,6 @@
 <br>
 <section class="form">
-    <form class='user-pms' action="" method="post">
+    <form <?=$lasinhvien ? 'hidden':''?> action="" method="post">
         <table class="">
             <tr>
                 <th>Mã lớp</th>
@@ -93,7 +93,7 @@
                 <th>Tên khoa</th>
                 <th>Tên khóa</th>
                 <th>Ngày tạo</th>
-                <th class='user-pms' style="width:10%">Todo</th>
+                <th <?=$lasinhvien ? 'hidden':''?> style="width:10%">Todo</th>
             </tr>
         </thead>
         <tbody>
@@ -107,7 +107,7 @@
                     <td><?=$item['ten_khoa']?></td>
                     <td><?=$item['ten_khoahoc']?></td>
                     <td><?=$item['ngay_tao']?></td>
-                    <td class='user-pms'>
+                    <td <?=$lasinhvien ? 'hidden':''?>>
                         <button onclick="onUpdate(<?=tojson($item)?>)"  class="btn btn-primary user-pms"><span class="pointer fa fa-edit"></span></button>
                         <button onclick="onDelete('<?=$item['id']?>')" class="btn btn-danger user-pms"><span class="pointer fa fa-trash"></span></button>
                     </td>

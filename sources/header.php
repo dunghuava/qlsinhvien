@@ -11,13 +11,14 @@
     <script src="<?=base_url('publics/js/jquery.js')?>"></script>
     <script src="<?=base_url('publics/bootstrap/js/bootstrap.js')?>"></script>
     <link rel="stylesheet" href="<?=base_url('publics/css/app.css?v='.time())?>">
-    <?php if (isset($muser['quyen']) && $muser['quyen']==0){ ?>
-        <style>
-            .user-pms{
-                display:none;
-            }
-        </style>
-    <?php } ?>
+    
+    <?php 
+        $lasinhvien=false;
+        if ($udata=='sinhvien'){
+            $lasinhvien=true;
+        } 
+    ?>
+
 </head>
 <body class="container app">
     <header>

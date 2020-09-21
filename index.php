@@ -5,9 +5,9 @@
     include ('models/database.php');
     $d = new database($config);
     $page = 'index';
-    $muser=NULL;
-    if (isset($_SESSION['muser'])){
-        $muser=$_SESSION['muser'];
+    $udata=NULL;
+    if (isset($_SESSION['udata'])){
+        $udata=$_SESSION['udata'];
     }
     if (isset($_GET['page'])){
         $page = $_GET['page'];
@@ -20,7 +20,7 @@
             echo('</div>');
             echo('<div class="col-md-10 md9">');
             if (file_exists('sources/'.$page.'.php')){
-                if (!isset($_SESSION['muser'])){
+                if (!isset($_SESSION['udata'])){
                     include ('sources/login.php');
                 }else{
                     include ('sources/'.$page.'.php');
