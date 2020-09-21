@@ -36,7 +36,7 @@
         <select name="" id="ma_nganh_s" class="form-control">
             <option value="0">Chọn ngành</option>
             <?php foreach ($nganh as $item){ ?>
-                <option value="<?=$item['ma_nganh']?>"><?=$item['ten_nganh']?></option>
+                <option value="<?=$item['id']?>"><?=$item['ten_nganh']?></option>
             <?php } ?>
         </select>
         </p>
@@ -47,7 +47,7 @@
             <select name="" id="ma_khoa_s" class="form-control">
                 <option value="0">Chọn khoa</option>
                 <?php foreach ($khoa as $item){ ?>
-                    <option value="<?=$item['ma_khoa']?>"><?=$item['ten_khoa']?></option>
+                    <option value="<?=$item['id']?>"><?=$item['ten_khoa']?></option>
                 <?php } ?>
             </select>
         </p>

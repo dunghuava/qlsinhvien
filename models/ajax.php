@@ -12,11 +12,15 @@
         $and =""; 
         $masv_s = $_POST['masv_s']; // tìm kiếm theo mã số sinh viên
         $ma_nganh_s = $_POST['ma_nganh_s']; // tìm kiếm theo mã ngành sinh viên
+        $ma_khoa_s = $_POST['ma_khoa_s'];
         if ($masv_s>0){
             $and.=" and a.ma_sv= $masv_s";
         }
-        if ($ma_nganh_s>0){
-            $and.=" and e.ma_nganh= $ma_nganh_s";
+        if (!empty($ma_nganh_s)){
+            $and.=" and e.id= '$ma_nganh_s'";
+        }
+        if (!empty($ma_khoa_s)){
+            $and.=" and d.id= '$ma_khoa_s'";
         }
         // cái này là sql để tìm sinh viên // ko hiểu cũng được vì nó vốn dĩ đã vậy r :)) như lúc m sinh ra thì m đã đéo mặc quần áo r cũng có ai cười m đâu :))
         // $json là cái biến để đựng danh sách sinh viên
