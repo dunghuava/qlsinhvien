@@ -189,7 +189,6 @@
             'ton_giao'   :$('#ton_giao').val(),
             'hoten_cha'  :$('#hoten_cha').val(),
             'hoten_me'   :$('#hoten_me').val(),
-            'quyen'      :$('#quyen').val(),
             'ma_lop'     :$('#ma_lop').val(),
             '_lat'       :$('#_lat').val(),
             '_lng'       :$('#_lng').val(),
@@ -224,7 +223,6 @@
         $('#ton_giao').val(json.ton_giao);
         $('#hoten_cha').val(json.hoten_cha);
         $('#hoten_me').val(json.hoten_me);
-        $('#quyen').val(json.quyen);
         $('#ma_lop').val(json.ma_lop);
         $('#_lat').val(json._lat);
         $('#_lng').val(json._lng);
